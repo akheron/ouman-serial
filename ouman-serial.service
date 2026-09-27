@@ -1,0 +1,17 @@
+[Unit]
+Description=Ouman EH-800B modem emulator (ouman-serial)
+After=network.target
+
+[Service]
+Type=simple
+User=ouman-serial
+Group=ouman-serial
+ExecStart=/usr/local/bin/ouman-serial serve --config /etc/ouman-serial.toml
+Restart=always
+RestartSec=5
+NoNewPrivileges=yes
+ProtectSystem=full
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

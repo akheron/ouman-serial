@@ -1,0 +1,7 @@
+# Without these settings, cargo links these targets with the host cc, which cannot link ARM
+# code. The Rust linker can link them alone, because no dependency contains C code.
+[target.arm-unknown-linux-musleabihf]
+linker = "rust-lld"
+
+[target.aarch64-unknown-linux-musl]
+linker = "rust-lld"

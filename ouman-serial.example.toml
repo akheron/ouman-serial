@@ -1,0 +1,40 @@
+# ouman-serial server configuration. Copy to /etc/ouman-serial.toml.
+
+# The serial device with the cable to the controller's RJ45-2 port. A /dev/serial/by-id/ path
+# does not change when the adapter moves to another USB port.
+serial_port = "/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_D-if00-port0"
+
+# The HTTP API listen address. Without a token, keep it on a loopback address.
+listen = "127.0.0.1:8765"
+
+# When set, each HTTP request must have the header "Authorization: Bearer <token>".
+# token = ""
+
+# The device ID (Laitetunnus) from the controller's SMS settings, if it is set there.
+# device_id = ""
+
+# The SMS centre number that the emulated SIM reports to the controller.
+smsc = "+358447983500"
+
+# Each request gets a sender number: this prefix and 4 digits.
+sender_prefix = "+35800000"
+
+# The daily SMS limit, the same value as in the controller menu (5 to 100).
+daily_limit = 100
+
+# A shell command that runs for each alarm SMS, with the alarm as JSON on stdin.
+# alarm_hook = "logger -t ouman-alarm"
+
+# The maximum number of requests that wait for their turn.
+queue_max = 10
+
+# Log all serial traffic.
+trace = false
+
+[timeouts]
+# The time for the controller to take a message.
+receive_s = 30
+# The time to wait for the reply after the controller has taken the message.
+reply_s = 10
+# If the controller has not polled for messages in this time, requests fail at once.
+poll_silence_s = 10
